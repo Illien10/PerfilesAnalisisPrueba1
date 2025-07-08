@@ -1,0 +1,2626 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Perfiles Análisis Categórico – Visualización de Perfiles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Visualización de Perfiles</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./sankey-2vars.html"> 
+<span class="menu-text">Sankey 2 Variables</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./sankey-3vars.html"> 
+<span class="menu-text">Sankey 3 Variables</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./sankey-4vars.html"> 
+<span class="menu-text">Sankey 4 Variables</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#construcción-de-perfiles-variables-justificación-y-visualización" id="toc-construcción-de-perfiles-variables-justificación-y-visualización" class="nav-link active" data-scroll-target="#construcción-de-perfiles-variables-justificación-y-visualización"><span class="header-section-number">1</span> Construcción de Perfiles: Variables, Justificación y Visualización</a>
+  <ul class="collapse">
+  <li><a href="#definición-de-criterios-de-propuestas-del-acta-a-propuestas-exhaustivas-y-sin-solapamiento" id="toc-definición-de-criterios-de-propuestas-del-acta-a-propuestas-exhaustivas-y-sin-solapamiento" class="nav-link" data-scroll-target="#definición-de-criterios-de-propuestas-del-acta-a-propuestas-exhaustivas-y-sin-solapamiento"><span class="header-section-number">1.1</span> Definición de Criterios, de propuestas del Acta a propuestas Exhaustivas y sin solapamiento</a>
+  <ul class="collapse">
+  <li><a href="#relación-entre-criterios-previos-y-variables-propuestas" id="toc-relación-entre-criterios-previos-y-variables-propuestas" class="nav-link" data-scroll-target="#relación-entre-criterios-previos-y-variables-propuestas"><span class="header-section-number">1.1.1</span> Relación entre Criterios Previos y Variables Propuestas</a></li>
+  <li><a href="#criterios-a-analizar-para-la-construcción-de-los-perfiles" id="toc-criterios-a-analizar-para-la-construcción-de-los-perfiles" class="nav-link" data-scroll-target="#criterios-a-analizar-para-la-construcción-de-los-perfiles"><span class="header-section-number">1.1.2</span> Criterios a Analizar para la construcción de los Perfiles:</a></li>
+  </ul></li>
+  <li><a href="#incompatibilidades-lógicas" id="toc-incompatibilidades-lógicas" class="nav-link" data-scroll-target="#incompatibilidades-lógicas"><span class="header-section-number">1.2</span> Incompatibilidades Lógicas</a>
+  <ul class="collapse">
+  <li><a href="#incompatibilidades-lógicas-histórico-de-ausencias" id="toc-incompatibilidades-lógicas-histórico-de-ausencias" class="nav-link" data-scroll-target="#incompatibilidades-lógicas-histórico-de-ausencias"><span class="header-section-number">1.2.1</span> Incompatibilidades Lógicas: Histórico de Ausencias</a></li>
+  <li><a href="#incompatibilidades-lógicas-pronóstico-educativo" id="toc-incompatibilidades-lógicas-pronóstico-educativo" class="nav-link" data-scroll-target="#incompatibilidades-lógicas-pronóstico-educativo"><span class="header-section-number">1.2.2</span> Incompatibilidades Lógicas: Pronóstico educativo</a></li>
+  <li><a href="#situación-topológica-2" id="toc-situación-topológica-2" class="nav-link" data-scroll-target="#situación-topológica-2"><span class="header-section-number">1.2.3</span> Situación topológica</a></li>
+  <li><a href="#incompatibilidades-lógicas-evolución-clínica" id="toc-incompatibilidades-lógicas-evolución-clínica" class="nav-link" data-scroll-target="#incompatibilidades-lógicas-evolución-clínica"><span class="header-section-number">1.2.4</span> Incompatibilidades lógicas: Evolución clínica</a></li>
+  <li><a href="#resumen-incompatibilidades-lógicas" id="toc-resumen-incompatibilidades-lógicas" class="nav-link" data-scroll-target="#resumen-incompatibilidades-lógicas"><span class="header-section-number">1.2.5</span> Resumen Incompatibilidades Lógicas</a></li>
+  </ul></li>
+  <li><a href="#posibles-perfiles" id="toc-posibles-perfiles" class="nav-link" data-scroll-target="#posibles-perfiles"><span class="header-section-number">1.3</span> Posibles Perfiles</a></li>
+  </ul></li>
+  <li><a href="#todas-las-permutaciones-con-dos-variables" id="toc-todas-las-permutaciones-con-dos-variables" class="nav-link" data-scroll-target="#todas-las-permutaciones-con-dos-variables"><span class="header-section-number">2</span> Todas las Permutaciones con Dos Variables</a></li>
+  <li><a href="#todas-las-permutaciones-con-3-variables" id="toc-todas-las-permutaciones-con-3-variables" class="nav-link" data-scroll-target="#todas-las-permutaciones-con-3-variables"><span class="header-section-number">3</span> Todas las permutaciones con 3 variables</a></li>
+  <li><a href="#todas-las-permutaciones-con-las-4-variables" id="toc-todas-las-permutaciones-con-las-4-variables" class="nav-link" data-scroll-target="#todas-las-permutaciones-con-las-4-variables"><span class="header-section-number">4</span> Todas las permutaciones con las 4 Variables</a></li>
+  <li><a href="#limitaciones" id="toc-limitaciones" class="nav-link" data-scroll-target="#limitaciones"><span class="header-section-number">5</span> Limitaciones</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Perfiles Análisis Categórico</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="construcción-de-perfiles-variables-justificación-y-visualización" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Construcción de Perfiles: Variables, Justificación y Visualización</h1>
+<section id="definición-de-criterios-de-propuestas-del-acta-a-propuestas-exhaustivas-y-sin-solapamiento" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="definición-de-criterios-de-propuestas-del-acta-a-propuestas-exhaustivas-y-sin-solapamiento"><span class="header-section-number">1.1</span> Definición de Criterios, de propuestas del Acta a propuestas Exhaustivas y sin solapamiento</h2>
+<p>En la siguiente tabla se propone una modificación de las dimensiones aportadas en los criterios así como un comienzo de operativización de los mismos para colaborar en su futura utilidad de cara a la priorización de criterios de selección.</p>
+<hr>
+<section id="relación-entre-criterios-previos-y-variables-propuestas" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="relación-entre-criterios-previos-y-variables-propuestas"><span class="header-section-number">1.1.1</span> Relación entre Criterios Previos y Variables Propuestas</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 10%">
+<col style="width: 23%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Criterios Previos</strong></th>
+<th><strong>Categorías Criterios Previos</strong></th>
+<th><strong>Criterios Propuestos</strong></th>
+<th><strong>Categorías Criterios Propuestos</strong></th>
+<th><strong>¿Qué nos dicen estas categorías que sea relevante?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Duración</td>
+<td>Existente, Prevista</td>
+<td>Histórico de Ausencias</td>
+<td>Ninguna, Menos de X (días/semanas), Más de X (días/semanas)</td>
+<td>¿Se han roto los vínculos?</td>
+</tr>
+<tr class="even">
+<td>Evolución Educativa</td>
+<td>Ausencia, Reincorporación medio plazo, Fase final</td>
+<td>Pronóstico educativo</td>
+<td>Reincorporación, Ausencia prolongada, Fase final</td>
+<td>¿Qué se prevé en base a su momento escolar?</td>
+</tr>
+</tbody>
+</table>
+<p>Desdoblamos entonces duración en las dos variables de Histórico de Ausencias y Pronóstico Educativo, aportando datos más precisos para su posterior análisis. Mediante este cambio dividimos los criterios para evitar solapamientos y hacerlos excluyente, colaborando en la definición de perfiles. Proseguimos con relaciones lógicas entre perfiles que imposibilitan algunas construcciones.</p>
+</section>
+<section id="criterios-a-analizar-para-la-construcción-de-los-perfiles" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="criterios-a-analizar-para-la-construcción-de-los-perfiles"><span class="header-section-number">1.1.2</span> Criterios a Analizar para la construcción de los Perfiles:</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 39%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Criterios</strong></th>
+<th><strong>Categorías Criterios</strong></th>
+<th><strong>¿Qué nos dicen estas categorías que sea relevante?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Histórico de Ausencias</td>
+<td>Ninguna, Menos de X (días/semanas), Más de X (días/semanas) <em>en los últimos X Meses?</em></td>
+<td>¿Se han roto los vínculos?</td>
+</tr>
+<tr class="even">
+<td>Pronóstico educativo</td>
+<td>Reincorporación, Ausencia prolongada, Fase final</td>
+<td>¿Qué se prevé en base a su momento escolar?</td>
+</tr>
+<tr class="odd">
+<td>Situación topológica</td>
+<td>Aula hospitalaria ,Hospital , Domicilio (con asistencia / sin asistencia), <em>Sin determinar</em></td>
+<td>¿Dónde está físicamente? ¿Con quién hay que coordinar desde el aula? (clave para la metodología AVATARES)</td>
+</tr>
+<tr class="even">
+<td>Evolución Clínica</td>
+<td>Debutante <em>como operativizar? (problemática verano)</em>, Diagnosticado previamente <em>como operativizar? (problemática verano)</em>, Recidiva, Fase Final</td>
+<td>¿En qué momento clínico se encuentra actualmente, pasó ya por esto, está comenzando?</td>
+</tr>
+<tr class="odd">
+<td>Nivel educativo / Edad</td>
+<td>Continua o intervalos; 1º a 6º primaria y 1º a 4º de ESO</td>
+<td>A mayor edad: mayor complejidad curricular, menor contacto con docentes, más interferencias evolutivas, etc. A menor edad menor necesidad de contacto con pares….</td>
+</tr>
+<tr class="even">
+<td>Compromiso del centro</td>
+<td>Bajo, Medio, Alto</td>
+<td>Define el grado de implicación institucional en la adaptación e inclusión del alumno.</td>
+</tr>
+<tr class="odd">
+<td>Compromiso familiar</td>
+<td>Bajo, Medio, Alto</td>
+<td>La ayuda esperada en la implementación por parte de la familia</td>
+</tr>
+</tbody>
+</table>
+<p>Nivel Educativo/Edad, Compromiso del centro y Compromiso Familiar: Responden a variables completamente independientes, que multiplican los casos pero no aportan casos de imposibilidad en un primer análisis. Se tratarán más adelante para establecer valores preferentes para la inclusión en el piloto, pero serán omitidos en el siguiente apartado del informe de Incompatibilidades Lógicas.</p>
+</section>
+</section>
+<section id="incompatibilidades-lógicas" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="incompatibilidades-lógicas"><span class="header-section-number">1.2</span> Incompatibilidades Lógicas</h2>
+<section id="incompatibilidades-lógicas-histórico-de-ausencias" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="incompatibilidades-lógicas-histórico-de-ausencias"><span class="header-section-number">1.2.1</span> Incompatibilidades Lógicas: Histórico de Ausencias</h3>
+<section id="pronóstico-educativo" class="level4" data-number="1.2.1.1">
+<h4 data-number="1.2.1.1" class="anchored" data-anchor-id="pronóstico-educativo"><span class="header-section-number">1.2.1.1</span> Pronóstico Educativo</h4>
+<p>En primer lugar no observamos incompatibilidades lógicas entre Histórico de Ausencias y Pronóstico educativo, ya que estas han de estar mediadas por la Situación clínica actual u otra variable.</p>
+</section>
+<section id="situación-topológica" class="level4" data-number="1.2.1.2">
+<h4 data-number="1.2.1.2" class="anchored" data-anchor-id="situación-topológica"><span class="header-section-number">1.2.1.2</span> Situación topológica</h4>
+<p>En cambio podemos observar como no es posible no tener Ausencias en el aula ordinaria y estar atendiendo al Aula Hospitalaria, estar hospitalizado o estar en el domicilio con o sin atención domiciliaria.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 22%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Histórico de Ausencias</strong></th>
+<th><strong>Situación Topológica</strong></th>
+<th><strong>Motivo de Incompatibilidad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ninguna</td>
+<td>Aula Hospitalaria</td>
+<td>La asistencia a un aula hospitalaria implica ausencia del centro ordinario.</td>
+</tr>
+<tr class="even">
+<td>Ninguna</td>
+<td>Hospitalización</td>
+<td>Hospitalización conlleva necesariamente interrupción de la asistencia regular.</td>
+</tr>
+<tr class="odd">
+<td>Ninguna</td>
+<td>Domicilio con atención educativa</td>
+<td>La atención domiciliaria sustituye la escolarización presencial: supone ausencias acumuladas.</td>
+</tr>
+<tr class="even">
+<td>Ninguna</td>
+<td>Domicilio sin atención educativa</td>
+<td>No asistir al centro ni recibir atención implica necesariamente una trayectoria de ausencias.</td>
+</tr>
+<tr class="odd">
+<td>Más de X Días</td>
+<td>Sin determinar</td>
+<td>Cuando ya se ha establecido la enfermedad y sucedió un lapso de tiempo necesario para que se produzca la pérdida de vínculos ha de ser necesario que este esté situado en alguna de las otras categorías</td>
+</tr>
+</tbody>
+</table>
+<p>Por lo tanto extraemos que en el caso de Histórico de Ausencias sea igual a Ninguna es necesario que su Situación Topológica sea <em>Sin determinar</em>, que encaja perfectamente con el posible perfil de un Debutante si observamos la las categorías de Evolución Clínica. Al igual que con Más de X Días es necesario que no sea <em>Sin determinar</em>.</p>
+</section>
+<section id="evolución-clínica" class="level4" data-number="1.2.1.3">
+<h4 data-number="1.2.1.3" class="anchored" data-anchor-id="evolución-clínica"><span class="header-section-number">1.2.1.3</span> Evolución clínica</h4>
+<p>Existen también relaciones de incompatibilidad entre el estado clínico actual y el histórico de Ausencias</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 21%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Histórico de Ausencias</strong></th>
+<th><strong>Evolución clínica</strong></th>
+<th><strong>Motivo de Incompatibilidad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ninguna</td>
+<td>Diagnosticado Previamente</td>
+<td>Existiendo la distinción con Recidiva no debería ser posible que un discente diagnosticado por primera vez no acumulara ninguna ausencia</td>
+</tr>
+<tr class="even">
+<td>Ninguna</td>
+<td>Fase Final</td>
+<td>Asumimos unas ausencias mínimas necesarias en un caso de esta gravedad</td>
+</tr>
+<tr class="odd">
+<td>Menos de X días</td>
+<td>Fase Final</td>
+<td>Asumimos unas ausencias mínimas necesarias en un caso de esta gravedad</td>
+</tr>
+<tr class="even">
+<td>Más de X días</td>
+<td>Debutante</td>
+<td>El período de tiempo en el que se acepte que alguien es Debutante no debería aceptar la desvinculación del grupo siguiendo la pregunta que guía la formulación de Histórico de Ausencias</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="incompatibilidades-lógicas-pronóstico-educativo" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="incompatibilidades-lógicas-pronóstico-educativo"><span class="header-section-number">1.2.2</span> Incompatibilidades Lógicas: Pronóstico educativo</h3>
+<section id="histórico-de-ausencias" class="level4" data-number="1.2.2.1">
+<h4 data-number="1.2.2.1" class="anchored" data-anchor-id="histórico-de-ausencias"><span class="header-section-number">1.2.2.1</span> Histórico de Ausencias</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 29%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Pronóstico Educativo</strong></th>
+<th><strong>Histórico de Ausencias</strong></th>
+<th><strong>Motivo de Incompatibilidad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fase Final</td>
+<td>Más de X días</td>
+<td>Dada la situación actual en el sistema educativo se precisa esta vinculación</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="situación-topológica-1" class="level4" data-number="1.2.2.2">
+<h4 data-number="1.2.2.2" class="anchored" data-anchor-id="situación-topológica-1"><span class="header-section-number">1.2.2.2</span> Situación topológica</h4>
+<p>No observamos relación de intolerancia entre estas variables.</p>
+</section>
+<section id="evolución-clínica-1" class="level4" data-number="1.2.2.3">
+<h4 data-number="1.2.2.3" class="anchored" data-anchor-id="evolución-clínica-1"><span class="header-section-number">1.2.2.3</span> Evolución clínica</h4>
+<p>Encontramos una relación de necesidad y coherencia entre el pronóstico final clínico con el pronóstico educativo.</p>
+</section>
+</section>
+<section id="situación-topológica-2" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="situación-topológica-2"><span class="header-section-number">1.2.3</span> Situación topológica</h3>
+<section id="histórico-de-ausencias-1" class="level4" data-number="1.2.3.1">
+<h4 data-number="1.2.3.1" class="anchored" data-anchor-id="histórico-de-ausencias-1"><span class="header-section-number">1.2.3.1</span> Histórico de ausencias</h4>
+<p>Ya ha sido tratado</p>
+</section>
+<section id="pronóstico-educativo-1" class="level4" data-number="1.2.3.2">
+<h4 data-number="1.2.3.2" class="anchored" data-anchor-id="pronóstico-educativo-1"><span class="header-section-number">1.2.3.2</span> Pronóstico educativo</h4>
+<p>Ya ha sido tratado</p>
+</section>
+<section id="evolución-clínica-2" class="level4" data-number="1.2.3.3">
+<h4 data-number="1.2.3.3" class="anchored" data-anchor-id="evolución-clínica-2"><span class="header-section-number">1.2.3.3</span> Evolución clínica</h4>
+<p>No encontramos relaciones incompatibles entre las variables.</p>
+</section>
+</section>
+<section id="incompatibilidades-lógicas-evolución-clínica" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="incompatibilidades-lógicas-evolución-clínica"><span class="header-section-number">1.2.4</span> Incompatibilidades lógicas: Evolución clínica</h3>
+<section id="histórico-de-ausencias-2" class="level4" data-number="1.2.4.1">
+<h4 data-number="1.2.4.1" class="anchored" data-anchor-id="histórico-de-ausencias-2"><span class="header-section-number">1.2.4.1</span> Histórico de Ausencias</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 29%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Evolución clínica</strong></th>
+<th><strong>Histórico de Ausencias</strong></th>
+<th><strong>Motivo de Incompatibilidad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fase Final</td>
+<td>Más de X días</td>
+<td>Dada la situación actual en el sistema educativo se precisa esta vinculación</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="resumen-incompatibilidades-lógicas" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="resumen-incompatibilidades-lógicas"><span class="header-section-number">1.2.5</span> Resumen Incompatibilidades Lógicas</h3>
+<p>Encontramos tres tipos de relaciones: de incompatibilidad y de necesidad simétricas y asimétricas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 36%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Tipo de relación</strong></th>
+<th><strong>Categoría-variable_1</strong></th>
+<th><strong>Categoría-variable_2</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>De necesidad Asimétrica</td>
+<td>Histórico de Ausencias= Ninguna</td>
+<td>Situación Topológica= <em>Sin determinar</em></td>
+</tr>
+<tr class="even">
+<td>Incompatibilidad</td>
+<td>Histórico de Ausencias= Ninguna</td>
+<td>Evolución clínica = Diagnosticado Previamente</td>
+</tr>
+<tr class="odd">
+<td>Incompatibilidad</td>
+<td>Histórico de Ausencias= Ninguna</td>
+<td>Evolución clínica = Fase final</td>
+</tr>
+<tr class="even">
+<td>Incomptaibilidad</td>
+<td>Histórico de Ausencias = Menos de X días</td>
+<td>Evolución clínica = Fase Final</td>
+</tr>
+<tr class="odd">
+<td>Incompatibilidad</td>
+<td>Histórico de Ausencias = Más de X días</td>
+<td>Evolución clínica = Debutante</td>
+</tr>
+<tr class="even">
+<td>Incompatibilidad</td>
+<td>Histórico de Ausencias = Más de X días</td>
+<td>Situación Topológica = <em>Sin determinar</em></td>
+</tr>
+<tr class="odd">
+<td>De necesidad Simétrica</td>
+<td>Pronóstico educativo = Fase Final</td>
+<td>Evolución clínica = Fase final</td>
+</tr>
+<tr class="even">
+<td>De necesidad Asimétrica</td>
+<td>Evolución clínica = Fase Final</td>
+<td>Histórico de Ausencias = Más de X días</td>
+</tr>
+</tbody>
+</table>
+<p>Observamos como las categorías discriminatorias, que establecen necesidades de relación son: Histórico de Ausencias, Situación Topológica, Evolución clínica y Pronóstico educativo.</p>
+</section>
+</section>
+<section id="posibles-perfiles" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="posibles-perfiles"><span class="header-section-number">1.3</span> Posibles Perfiles</h2>
+<p>Definidas las incompatibilidades lógicas podemos tratar de elaborar en primer lugar tablas que nos permitan observar el universo de posibles perfiles válidos e inválidos, para ello nos serviremos de R mediante los siguientes chunks de código:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorías y sus valores</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cat_historico_ausencias <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ninguna"</span>, <span class="st">"Menos de X"</span>, <span class="st">"Más de X"</span>)  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cat_pronostico_educativo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Reincorporación"</span>, <span class="st">"Ausencia prolongada"</span>, <span class="st">"Fase final"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>cat_situacion_topologica <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Aula hospitalaria"</span>, <span class="st">"Hospital"</span>, <span class="st">"Domicilio con asistencia"</span>, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Domicilio sin asistencia"</span>, <span class="st">"Sin determinar"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>cat_evolucion_clinica <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Debutante"</span>, <span class="st">"Diagnosticado previamente"</span>, <span class="st">"Recidiva"</span>, <span class="st">"Fase final"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>cat_nivel_educativo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1º Primaria"</span>, <span class="st">"2º Primaria"</span>, <span class="st">"3º Primaria"</span>, <span class="st">"4º Primaria"</span>, <span class="st">"5º Primaria"</span>, <span class="st">"6º Primaria"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"1º ESO"</span>, <span class="st">"2º ESO"</span>, <span class="st">"3º ESO"</span>, <span class="st">"4º ESO"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>cat_compromiso_familia <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>cat_compromiso_centro <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>combinaciones <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">Historico_Ausencias =</span> cat_historico_ausencias,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pronostico_Educativo =</span> cat_pronostico_educativo,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">Situacion_Topologica =</span> cat_situacion_topologica,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">Evolucion_Clinica =</span> cat_evolucion_clinica,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>es_valido <span class="ot">&lt;-</span> <span class="cf">function</span>(ha, pe, st, ec) {</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 🔴 Incompatibilidades lógicas:</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ha <span class="sc">==</span> <span class="st">"Ninguna"</span> <span class="sc">&amp;&amp;</span> ec <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Diagnosticado previamente"</span>, <span class="st">"Fase final"</span>)) <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ha <span class="sc">==</span> <span class="st">"Menos de X"</span> <span class="sc">&amp;&amp;</span> ec <span class="sc">==</span> <span class="st">"Fase final"</span>) <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ha <span class="sc">==</span> <span class="st">"Más de X"</span> <span class="sc">&amp;&amp;</span> ec <span class="sc">==</span> <span class="st">"Debutante"</span>) <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ha <span class="sc">==</span> <span class="st">"Más de X"</span> <span class="sc">&amp;&amp;</span> st <span class="sc">==</span> <span class="st">"Sin determinar"</span>) <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 🔷 Necesidad asimétrica:</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ha <span class="sc">==</span> <span class="st">"Ninguna"</span> <span class="sc">&amp;&amp;</span> st <span class="sc">!=</span> <span class="st">"Sin determinar"</span>) <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (ec <span class="sc">==</span> <span class="st">"Fase final"</span> <span class="sc">&amp;&amp;</span> <span class="sc">!</span>(ha <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Más de X"</span>))) <span class="fu">return</span>(<span class="cn">FALSE</span>) </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 🔷 Necesidad simétrica:</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((pe <span class="sc">==</span> <span class="st">"Fase final"</span> <span class="sc">&amp;&amp;</span> ec <span class="sc">!=</span> <span class="st">"Fase final"</span>) <span class="sc">||</span> (ec <span class="sc">==</span> <span class="st">"Fase final"</span> <span class="sc">&amp;&amp;</span> pe <span class="sc">!=</span> <span class="st">"Fase final"</span>)) <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>combinaciones<span class="sc">$</span>valido <span class="ot">&lt;-</span> <span class="fu">mapply</span>(</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  es_valido, </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  combinaciones<span class="sc">$</span>Historico_Ausencias,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  combinaciones<span class="sc">$</span>Pronostico_Educativo,</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  combinaciones<span class="sc">$</span>Situacion_Topologica,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  combinaciones<span class="sc">$</span>Evolucion_Clinica</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>combinaciones_validas <span class="ot">&lt;-</span> combinaciones[combinaciones<span class="sc">$</span>valido <span class="sc">==</span> <span class="cn">TRUE</span>, ]</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>combinaciones_invalidas <span class="ot">&lt;-</span> combinaciones[combinaciones<span class="sc">$</span>valido <span class="sc">==</span> <span class="cn">FALSE</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Primeras combinaciones válidas</caption>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 21%">
+<col style="width: 22%">
+<col style="width: 26%">
+<col style="width: 19%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Historico_Ausencias</th>
+<th style="text-align: left;">Pronostico_Educativo</th>
+<th style="text-align: left;">Situacion_Topologica</th>
+<th style="text-align: left;">Evolucion_Clinica</th>
+<th style="text-align: left;">valido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Primeras combinaciones inválidas</caption>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 22%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 20%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Historico_Ausencias</th>
+<th style="text-align: left;">Pronostico_Educativo</th>
+<th style="text-align: left;">Situacion_Topologica</th>
+<th style="text-align: left;">Evolucion_Clinica</th>
+<th style="text-align: left;">valido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Combinaciones inválidas con celdas en conflicto resaltadas</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Historico_Ausencias</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pronostico_Educativo</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Situacion_Topologica</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Evolucion_Clinica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">13</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">19</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">21</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">22</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">27</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">28</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">30</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">31</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">33</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">34</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">36</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">39</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">42</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">43</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">45</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Más de X</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Debutante</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">46</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">49</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">52</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">55</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">58</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">61</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">62</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">63</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">64</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">67</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">71</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">72</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">73</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">76</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">79</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">80</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">81</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">82</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">84</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">85</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">87</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">88</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">90</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Diagnosticado previamente</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">91</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">94</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">97</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">98</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">99</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">100</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">103</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">106</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">107</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">108</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">109</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">112</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">115</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">116</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">117</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">118</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">121</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">124</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">125</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">126</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">129</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">132</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">133</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">134</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">135</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Recidiva</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">136</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">137</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">138</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">139</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">140</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">141</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">142</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Aula hospitalaria</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">143</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">145</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">146</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">147</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">148</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">149</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">150</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">151</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Hospital</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">152</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">154</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">155</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">156</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">157</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">158</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">159</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">160</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio con asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">161</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">163</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">164</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">165</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">166</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">167</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">168</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">169</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Domicilio sin asistencia</span></td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">170</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">172</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">173</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">174</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">175</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">176</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">177</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">178</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Ninguna</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">179</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Menos de X</span></td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(255, 204, 204, 255) !important;">Fase final</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">180</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Combinaciones válidas</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Historico_Ausencias</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pronostico_Educativo</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Situacion_Topologica</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Evolucion_Clinica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">38</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">41</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Debutante</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">47</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">48</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">51</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">56</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">57</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">59</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">60</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">65</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">66</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">69</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">74</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">75</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">77</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">78</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">83</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">86</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">92</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">93</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">95</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">96</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">101</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">102</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">104</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">105</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">110</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">111</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">113</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">114</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">119</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">120</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">122</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">123</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">127</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">128</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">130</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">131</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: left;">Recidiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">144</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">153</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">162</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">171</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: left;">Fase final</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Total de combinaciones válidas por categoría</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Categoria</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Histórico de Ausencias</td>
+<td style="text-align: left;">Menos de X</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Histórico de Ausencias</td>
+<td style="text-align: left;">Más de X</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Histórico de Ausencias</td>
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pronóstico Educativo</td>
+<td style="text-align: left;">Ausencia prolongada</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pronóstico Educativo</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pronóstico Educativo</td>
+<td style="text-align: left;">Reincorporación</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Situación Topológica</td>
+<td style="text-align: left;">Aula hospitalaria</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Situación Topológica</td>
+<td style="text-align: left;">Domicilio con asistencia</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Situación Topológica</td>
+<td style="text-align: left;">Domicilio sin asistencia</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Situación Topológica</td>
+<td style="text-align: left;">Hospital</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Situación Topológica</td>
+<td style="text-align: left;">Sin determinar</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evolución Clínica</td>
+<td style="text-align: left;">Debutante</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evolución Clínica</td>
+<td style="text-align: left;">Diagnosticado previamente</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evolución Clínica</td>
+<td style="text-align: left;">Fase final</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evolución Clínica</td>
+<td style="text-align: left;">Recidiva</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; background-color: rgba(223, 240, 216, 255) !important;">TOTAL GENERAL</td>
+<td style="text-align: left; font-weight: bold; background-color: rgba(223, 240, 216, 255) !important;"></td>
+<td style="text-align: right; font-weight: bold; background-color: rgba(223, 240, 216, 255) !important;">54</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>#Todas las combinaciones válidas</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-607e32c157a200500721" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-607e32c157a200500721">{"x":{"filter":"none","vertical":false,"caption":"<caption>Combinaciones válidas reordenables por cualquier variable<\/caption>","data":[["2","5","11","14","20","23","29","32","37","38","40","41","47","48","50","51","56","57","59","60","65","66","68","69","74","75","77","78","83","86","92","93","95","96","101","102","104","105","110","111","113","114","119","120","122","123","127","128","130","131","144","153","162","171"],["Menos de X","Menos de X","Menos de X","Menos de X","Menos de X","Menos de X","Menos de X","Menos de X","Ninguna","Menos de X","Ninguna","Menos de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Menos de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Menos de X","Más de X","Ninguna","Menos de X","Ninguna","Menos de X","Más de X","Más de X","Más de X","Más de X"],["Reincorporación","Ausencia prolongada","Reincorporación","Ausencia prolongada","Reincorporación","Ausencia prolongada","Reincorporación","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Reincorporación","Reincorporación","Ausencia prolongada","Ausencia prolongada","Fase final","Fase final","Fase final","Fase final"],["Aula hospitalaria","Aula hospitalaria","Hospital","Hospital","Domicilio con asistencia","Domicilio con asistencia","Domicilio sin asistencia","Domicilio sin asistencia","Sin determinar","Sin determinar","Sin determinar","Sin determinar","Aula hospitalaria","Aula hospitalaria","Aula hospitalaria","Aula hospitalaria","Hospital","Hospital","Hospital","Hospital","Domicilio con asistencia","Domicilio con asistencia","Domicilio con asistencia","Domicilio con asistencia","Domicilio sin asistencia","Domicilio sin asistencia","Domicilio sin asistencia","Domicilio sin asistencia","Sin determinar","Sin determinar","Aula hospitalaria","Aula hospitalaria","Aula hospitalaria","Aula hospitalaria","Hospital","Hospital","Hospital","Hospital","Domicilio con asistencia","Domicilio con asistencia","Domicilio con asistencia","Domicilio con asistencia","Domicilio sin asistencia","Domicilio sin asistencia","Domicilio sin asistencia","Domicilio sin asistencia","Sin determinar","Sin determinar","Sin determinar","Sin determinar","Aula hospitalaria","Hospital","Domicilio con asistencia","Domicilio sin asistencia"],["Debutante","Debutante","Debutante","Debutante","Debutante","Debutante","Debutante","Debutante","Debutante","Debutante","Debutante","Debutante","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Diagnosticado previamente","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Recidiva","Fase final","Fase final","Fase final","Fase final"],[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Historico_Ausencias<\/th>\n      <th>Pronostico_Educativo<\/th>\n      <th>Situacion_Topologica<\/th>\n      <th>Evolucion_Clinica<\/th>\n      <th>valido<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":25,"autoWidth":true,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Historico_Ausencias","targets":1},{"name":"Pronostico_Educativo","targets":2},{"name":"Situacion_Topologica","targets":3},{"name":"Evolucion_Clinica","targets":4},{"name":"valido","targets":5}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/grafico_barras_totales-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/grafico_barras_totales-2.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="todas-las-permutaciones-con-dos-variables" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Todas las Permutaciones con Dos Variables</h1>
+<ul>
+<li><a href="./sankey-2vars.html">Sankey 2 Variables</a></li>
+</ul>
+</section>
+<section id="todas-las-permutaciones-con-3-variables" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Todas las permutaciones con 3 variables</h1>
+<ul>
+<li><a href="./sankey-3vars.html">Sankey 3 Variables</a></li>
+</ul>
+</section>
+<section id="todas-las-permutaciones-con-las-4-variables" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Todas las permutaciones con las 4 Variables</h1>
+<ul>
+<li><a href="./sankey-4vars.html">Sankey 4 Variables</a></li>
+</ul>
+</section>
+<section id="limitaciones" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Limitaciones</h1>
+<p>Realizado por una sola persona, poco conocimiento clínico…</p>
+<p>#Posibilidades Tras la definición de criterios sería posible asignar puntuaciones a las posibles variables de cada posible participante y establecer incluso la necesidad de una homogeneidad o heterogeneidad mínima entre los candidatos, facilitando así la labor de investigación.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
